@@ -60,6 +60,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+ 
+          },
           "configurations": {
             "production": {
               "buildTarget": "international-address-book:build:production"

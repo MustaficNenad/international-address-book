@@ -1,1 +1,32 @@
-<p>tenant works!</p>
+<div class="table-container">
+  <div *ngIf="loading$ | async" class="loading">
+    <p>Loading tenants...</p>
+  </div>
+
+  <table *ngIf="!(loading$ | async)">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Domain</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tenant of tenants$ | async" class="tenant-row"
+          (mouseenter)="onRowHover(tenant.id, $event)" (mouseleave)="onRowLeave()">
+        <td>{{ tenant.id }}</td>
+        <td>{{ tenant.name }}</td>
+        <td>{{ tenant.domain }}</td>
+
+        <!-- Audit Info Tooltip -->
+        <div class="audit-info" *ngIf="hoveredTenant === tenant.id"
+             [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}">
+          <p><strong>Created By:</strong> {{ tenant.createdBy }}</p>
+          <p><strong>Created At:</strong> {{ tenant.createdAt | date: 'short' }}</p>
+          <p><strong>Updated By:</strong> {{ tenant.updatedBy }}</p>
+          <p><strong>Updated At:</strong> {{ tenant.updatedAt | date: 'short' }}</p>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
