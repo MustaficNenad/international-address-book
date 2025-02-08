@@ -13,7 +13,7 @@ import { TenantActions } from './tenant.actions';
   templateUrl: './tenant.component.html',
   styleUrls: ['./tenant.component.scss']
 })
-export class TenantListComponent implements OnInit {
+export class TenantComponent implements OnInit {
   tenants$: Observable<Tenant[]>;
   loading$: Observable<boolean>;
   hoveredTenant: number | null = null;  // Track hovered tenant row ID
